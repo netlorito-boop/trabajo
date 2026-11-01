@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123b32"><title>ObraCerca | Mapa de trabajos</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="logo">⌂</span>Obra<span>Cerca</span></a>
+  <div class="tagline">Trabajos de construcción cerca de ti</div>
+  <button class="publish" id="openForm">＋ Publicar trabajo</button>
+</header>
+<main>
+  <div id="map"></div>
+  <section class="map-panel">
+    <div class="panel-title"><span class="red-dot"></span><div><b>Solicitudes en el mapa</b><small id="counter">Cargando trabajos...</small></div></div>
+    <input id="searchInput" placeholder="Buscar baño, pintura, plomería...">
+    <select id="categoryFilter">
+      <option value="Todos">Todas las categorías</option><option>Albañilería</option><option>Plomería</option><option>Electricidad</option><option>Pintura</option><option>Remodelación</option><option>Techos</option><option>Otros</option>
+    </select>
+    <div class="legend"><span class="red-dot"></span> Cada punto rojo representa un trabajo</div>
+  </section>
+  <button class="locate" id="locateBtn" title="Mi ubicación">◎</button>
+  <div class="map-hint">Toca cualquier punto rojo para ver el trabajo</div>
+</main>
+<dialog id="jobDialog">
+<form id="jobForm" method="dialog">
+  <div class="dialog-head"><div><small>NUEVA SOLICITUD</small><h2>Publicar un trabajo</h2></div><button type="button" id="closeForm" class="x">×</button></div>
+  <p class="help">Completa los datos y coloca el punto en el lugar donde se necesita el trabajo. Puedes hacer clic directamente en el mapa para elegir la ubicación.</p>
+  <label>¿Qué trabajo necesitas?</label><input id="title" required maxlength="75" placeholder="Ej. Construir un baño">
+  <div class="two"><div><label>Categoría</label><select id="category"><option>Albañilería</option><option>Plomería</option><option>Electricidad</option><option>Pintura</option><option>Remodelación</option><option>Techos</option><option>Otros</option></select></div><div><label>¿Cuánto pagas? (COP)</label><input id="budget" type="number" min="10000" required placeholder="850000"></div></div>
+  <label>Descripción del trabajo</label><textarea id="description" rows="3" maxlength="400" placeholder="Explica qué necesitas, medidas, materiales..."></textarea>
+  <div class="two"><div><label>Barrio o sector</label><input id="neighborhood" required placeholder="Ej. La Riviera"></div><div><label>Contacto (opcional)</label><input id="contact" maxlength="70" placeholder="Teléfono"></div></div>
+  <div class="coordinates"><b>Ubicación del punto rojo</b><span id="chosenLocation">Cúcuta (ubicación inicial)</span><small>Presiona «Elegir en el mapa» y luego toca el lugar exacto aproximado.</small><button type="button" id="pickLocation" class="choose">Elegir en el mapa</button></div>
+  <input type="hidden" id="lat" value="7.8939"><input type="hidden" id="lng" value="-72.5078">
+  <div class="actions"><button type="button" class="cancel" id="cancelForm">Cancelar</button><button type="submit" class="publish">Publicar punto rojo</button></div>
+  <p id="formMessage"></p>
+</form>
+</dialog>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="app.js"></script>
+</body></html>
